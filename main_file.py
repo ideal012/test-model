@@ -1,18 +1,17 @@
 import streamlit as st
-# ตั้งค่าหน้าเว็บ
-st.set_page_config(page_title="Automatic Scheduler", layout="wide")
-st.title("🎓 Automatic Course Scheduler")
 
-# ==========================================
-# 1. User Config (UI Side)
-# ==========================================
-st.sidebar.header("Configuration")
-schedule_mode_desc = {
-    1: "Compact Mode (09:00 - 16:00)",
-    2: "Flexible Mode (08:30 - 19:00)"
-}
-SCHEDULE_MODE = st.sidebar.radio(
-    "Select Scheduling Mode:",
-    options=[1, 2],
-    format_func=lambda x: schedule_mode_desc[x]
+st.title("Hello Streamlit-er 👋")
+st.markdown(
+    """ 
+    This is a playground for you to try Streamlit and have fun. 
+
+    **There's :rainbow[so much] you can build!**
+    
+    We prepared a few examples for you to get started. Just 
+    click on the buttons above and discover what you can do 
+    with Streamlit. 
+    """
 )
+
+if st.button("Send balloons!"):
+    st.balloons()
