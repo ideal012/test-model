@@ -1,6 +1,5 @@
 streamlit
 pandas
 opencv-python-headless
-random
 shutil
 PIL
