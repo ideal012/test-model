@@ -1,7 +1,6 @@
-os
+streamlit
 paddas
 cv2
 random
 shutil
 PIL
-streamlit
