@@ -1,5 +1,5 @@
 streamlit
-paddas
+pandas
 cv2
 random
 shutil
