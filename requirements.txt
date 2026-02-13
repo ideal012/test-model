@@ -1,6 +1,6 @@
+opencv-python-headless
 streamlit
 pandas
-opencv-python-headless
 ultralytics
 numpy
-PIL
+Pillow
