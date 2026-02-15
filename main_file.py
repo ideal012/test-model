@@ -23,26 +23,36 @@ def get_loaded_model(pt_file_path):
         return None
 
 # Sidebar สำหรับ Config
+# --- Sidebar Config ---
 st.sidebar.header("⚙️ Configuration")
-model_file = st.sidebar.file_uploader("Upload Model (.pt)", type=['pt'])
+
+MODEL_DIR = "models"
+
+# หาไฟล์ .pt ในโฟลเดอร์ models อัตโนมัติ
+available_models = [
+    f for f in os.listdir(MODEL_DIR) if f.endswith(".pt")
+]
+
+selected_model_name = st.sidebar.selectbox(
+    "Select Model",
+    available_models
+)
+
 conf_score = st.sidebar.slider("Confidence Score", 0.0, 1.0, 0.25)
 
 # --- 2. Main Logic ---
-if model_file:
-    # Save temp file เพื่อให้ YOLO library อ่าน path ได้
-    with tempfile.NamedTemporaryFile(delete=False, suffix='.pt') as tmp:
-        tmp.write(model_file.getvalue())
-        temp_model_path = tmp.name
+if selected_model_name:
 
-    # เรียกใช้ Class จาก model.py
-    model_wrapper = get_loaded_model(temp_model_path)
-    
+    model_path = os.path.join(MODEL_DIR, selected_model_name)
+
+    model_wrapper = get_loaded_model(model_path)
+
     if model_wrapper:
         st.sidebar.success("✅ Model Loaded!")
     else:
         st.sidebar.error("❌ Failed to load model.")
         st.stop()
-
+        
     # --- 3. Image Input & Processing ---
     uploaded_image = st.file_uploader("Upload Image to Analyze", type=['jpg', 'png', 'jpeg'])
 
